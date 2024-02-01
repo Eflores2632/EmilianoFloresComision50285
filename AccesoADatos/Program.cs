@@ -1,4 +1,5 @@
 ﻿using AccesoaDatos.database;
+using AccesoADatos.Models;
 
 namespace AccesoADatos
 {
@@ -6,12 +7,14 @@ namespace AccesoADatos
     {
         static void Main(string[] args)
         {
-            ProductoData db = new UsuarioData();
+            ProductoData db = new ProductoData();
             //try
             //{
-            //    Usuario usuarioObtenido = db.ObtenerUsuarioPorId(8);
+            //    Producto usuarioObtenido = db.ObtenerProducto(2);
+            //    Console.WriteLine("Hello, World!");
             //}
-            //catch (Exception ex) { Console.WriteLine(ex.Message); }
+            //catch (Exception ex) { Console.WriteLine(ex.Message);}
+            List<Producto> productos = db.ListarPrductos();
             //Usuario user = new("Emiliano", "Flores", "Emi", "Contraseña", "emiflores@mail.ocm");
             //if (db.ModificarUsuario(2, user))
             //{

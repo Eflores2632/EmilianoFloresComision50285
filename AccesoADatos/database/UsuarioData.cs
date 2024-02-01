@@ -3,13 +3,14 @@ using System.Data.SqlClient;
 
 namespace AccesoaDatos.database
 {
-    public class ProductoData
+    public class UsuarioData
     {
         private string stringConnection;
 
-        public ProductoData()
+        public UsuarioData()
         {
-            this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+            //this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+            this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;"; ;
         }
 
         public Usuario ObtenerUsuario(int id)
