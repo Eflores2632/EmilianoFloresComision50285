@@ -9,8 +9,8 @@ namespace AccesoaDatos.database
 
         public ProductoData()
         {
-            //this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
-            this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
+            this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+            //this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
         }
         public Producto ObtenerProducto(int id)
         {
@@ -61,9 +61,9 @@ namespace AccesoaDatos.database
                 return listaProductos;
             }
         }
-        public bool CrearProducto(Producto producto)
+        public static bool CrearProducto(Producto producto)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;"))
             {
                 string query = "INSERT INTO Producto (Descripciones,Costo,PrecioVenta,Stock,IdUsuario) values (@descripciones,@costo,@precioVenta,@stock,@idUsuario)";
                 SqlCommand cmd = new SqlCommand(query, connection);

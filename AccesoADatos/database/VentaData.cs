@@ -3,19 +3,19 @@ using System.Data.SqlClient;
 
 namespace AccesoADatos.database
 {
-    public class ProductoVendidoData
+    public class VentaData
     {
         private string stringConnection;
-        public ProductoVendidoData()
+        public VentaData()
         {
             this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
             //this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
         }
-        public ProductoVendido ObtenerProductoVendido(int id)
+        public Venta ObtenerVenta(int id)
         {
             using (SqlConnection connection = new SqlConnection(this.stringConnection))
             {
-                string query = "SELECT * FROM ProductoVendido where id = @id";
+                string query = "SELECT * FROM Venta where id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("id", id);
                 connection.Open();
@@ -23,11 +23,10 @@ namespace AccesoADatos.database
                 if (reader.Read())
                 {
                     int idObtenido = Convert.ToInt32(reader["id"]);
-                    int idproducto = Convert.ToInt32(1);
-                    int stock = Convert.ToInt32(3);
-                    int idventa = Convert.ToInt32(3);
-                    ProductoVendido productonuevo = new ProductoVendido(idObtenido, idproducto, stock, idventa);
-                    return productonuevo;
+                    string comentarios = reader.GetString(2);
+                    int idusuario = Convert.ToInt32(3);
+                    Venta ventanuevo = new Venta(idObtenido, comentarios, idusuario);
+                    return ventanuevo;
                 }
                 else
                 {
@@ -35,45 +34,56 @@ namespace AccesoADatos.database
                 }
             }
         }
-        public List<ProductoVendido> ListarPrductosVendidos()
+        public List<Venta> ListarVentas()
         {
             using (SqlConnection connection = new SqlConnection(this.stringConnection))
             {
-                string query = "SELECT * FROM ProductoVendidos";
+                string query = "SELECT * FROM Venta";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                List<ProductoVendido> listaproductosnuevos = new List<ProductoVendido>();
+                List<Venta> listaVenta = new List<Venta>();
                 while (reader.Read())
                 {
                     int idObtenido = Convert.ToInt32(reader["id"]);
-                    int idproducto = Convert.ToInt32(1);
-                    int stock = Convert.ToInt32(3);
-                    int idventa = Convert.ToInt32(3);
-                    ProductoVendido productovendidonuevo = new(idObtenido, idproducto, stock, idventa);
-                    listaproductosnuevos.Add(productovendidonuevo);
+                    string comentarios = reader.GetString(2);
+                    int idusuario = Convert.ToInt32(3);
+                    Venta ventanuevo = new Venta(idObtenido, comentarios, idusuario);
+                    listaVenta.Add(ventanuevo);
                 }
-                return listaproductosnuevos;
+                return listaVenta;
             }
         }
-        public bool CrearProductoVendido(ProductoVendido productovendido)
+        public bool CrearVenta(Venta venta)
         {
             using (SqlConnection connection = new SqlConnection(this.stringConnection))
             {
-                string query = "INSERT INTO ProductoVendido (Stock,IdProducto,IdVenta) values (@stock,@idproducto,@idventa)";
+                string query = "INSERT INTO Usuario (Comentarios,IdUsuarios) values (@comentarios,@idusuario)";
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("Stock", productovendido.Stock);
-                cmd.Parameters.AddWithValue("IdProducto", productovendido.IdProducto);
-                cmd.Parameters.AddWithValue("IdVenta", productovendido.IdVenta);
+                cmd.Parameters.AddWithValue("comentarios", venta.Comentarios);
+                cmd.Parameters.AddWithValue("idusuario", venta.IdUsuario);
                 connection.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool EliminarProducto(int id)
+        public bool ModificarVenta(int id, Venta venta)
         {
             using (SqlConnection connection = new SqlConnection(this.stringConnection))
             {
-                string query = "DELETE FROM ProductoVendido WHERE id = @id";
+                string query = "UPDATE Venta SET Comentarios = @comentarios,IdUsuarios = @idusuario WHERE id = @id";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("comentarios", venta.Comentarios);
+                cmd.Parameters.AddWithValue("idusuario", venta.IdUsuario);
+                cmd.Parameters.AddWithValue("id", id);
+                connection.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+        public bool EliminarVenta(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            {
+                string query = "DELETE FROM Venta WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("id", id);
                 connection.Open();

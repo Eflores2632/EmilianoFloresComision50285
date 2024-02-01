@@ -1,5 +1,4 @@
 ﻿using AccesoaDatos.database;
-using AccesoADatos.Models;
 
 namespace AccesoADatos
 {
@@ -7,14 +6,17 @@ namespace AccesoADatos
     {
         static void Main(string[] args)
         {
-            ProductoData db = new ProductoData();
+            //
+            // Prueba Usuarios
+            //
+            //UsuarioData db = new UsuarioData();
             //try
             //{
             //    Producto usuarioObtenido = db.ObtenerProducto(2);
-            //    Console.WriteLine("Hello, World!");
+            //    ;
             //}
             //catch (Exception ex) { Console.WriteLine(ex.Message);}
-            List<Producto> productos = db.ListarPrductos();
+            //List<Usuario> usuariosObtenidos = db.ListarUsuarios();
             //Usuario user = new("Emiliano", "Flores", "Emi", "Contraseña", "emiflores@mail.ocm");
             //if (db.ModificarUsuario(2, user))
             //{
@@ -32,8 +34,23 @@ namespace AccesoADatos
             //{
             //    Console.WriteLine("No se pudo borrar un usuario");
             //}
-            //List<Usuario> usuariosObtenidos = db.ListarUsuarios();
-            Console.WriteLine("Hello, World!");
+
+            //
+            // Prueba Productos
+            //
+            ProductoData db = new();
+            //try
+            //{
+            //    Producto usuarioObtenido = db.ObtenerProducto(2);
+            //    ;
+            //}
+            //catch (Exception ex) { Console.WriteLine(ex.Message); }
+            List<Producto> productos = db
+            ;
+            //Producto producto = new("Remera", 17500, 19000, 15, 2);
+            //db.CrearProducto(producto);
+            //db.EliminarProducto(7);
+            //db.ModificarProducto(4, producto);
         }
     }
 }
