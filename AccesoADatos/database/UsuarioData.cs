@@ -5,14 +5,8 @@ namespace AccesoaDatos.database
 {
     public class UsuarioData
     {
-        private static string stringConnection;
-        public UsuarioData()
-        {
-            //this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
-            UsuarioData.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
-        }
-
-        public Usuario ObtenerUsuario(int id)
+        private static string stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+        public static Usuario ObtenerUsuario(int id)
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
@@ -38,7 +32,7 @@ namespace AccesoaDatos.database
                 }
             }
         }
-        public List<Usuario> ListarUsuarios()
+        public static List<Usuario> ListarUsuarios()
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
@@ -61,7 +55,7 @@ namespace AccesoaDatos.database
                 return listaUsuarios;
             }
         }
-        public bool CrearUsuario(Usuario user)
+        public static bool CrearUsuario(Usuario user)
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
@@ -77,7 +71,7 @@ namespace AccesoaDatos.database
             }
         }
 
-        public bool ModificarUsuario(int id, Usuario user)
+        public static bool ModificarUsuario(int id, Usuario user)
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
@@ -93,7 +87,7 @@ namespace AccesoaDatos.database
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool EliminarUsuario(int id)
+        public static bool EliminarUsuario(int id)
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {

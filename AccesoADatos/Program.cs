@@ -1,4 +1,5 @@
-﻿using AccesoaDatos.database;
+﻿using AccesoADatos.database;
+using AccesoADatos.Models;
 
 namespace AccesoADatos
 {
@@ -9,7 +10,6 @@ namespace AccesoADatos
             //
             // Prueba Usuarios
             //
-            //UsuarioData db = new UsuarioData();
             //try
             //{
             //    Producto usuarioObtenido = db.ObtenerProducto(2);
@@ -38,19 +38,48 @@ namespace AccesoADatos
             //
             // Prueba Productos
             //
-            ProductoData db = new();
             //try
             //{
-            //    Producto usuarioObtenido = db.ObtenerProducto(2);
+            //Producto productoObtenido = ProductoData.ObtenerProducto(2);
             //    ;
             //}
             //catch (Exception ex) { Console.WriteLine(ex.Message); }
-            List<Producto> productos = db
-            ;
+            //List<Producto> productos = ProductoData.ListarPrductos();
+            //;
             //Producto producto = new("Remera", 17500, 19000, 15, 2);
-            //db.CrearProducto(producto);
-            //db.EliminarProducto(7);
-            //db.ModificarProducto(4, producto);
+            //ProductoData.CrearProducto(producto);
+            //ProductoData.EliminarProducto(7);
+            //ProductoData.ModificarProducto(4, producto);
+
+            //
+            // Prueba ProductosVendido
+            //
+            //try
+            //{
+            //    ProductoVendido productovendidoObtenido = ProductoVendidoData.ObtenerProductoVendido(2);
+            //    ;
+            //}
+            //catch (Exception ex) { Console.WriteLine(ex.Message); }
+            //List<ProductoVendido> productos = ProductoVendidoData.ListarPrductosVendidos();
+            //ProductoVendido producto = new(1, 1, 1);
+            //ProductoVendidoData.CrearProductoVendido(producto);
+            //ProductoVendidoData.EliminarProducto(7);
+            //ProductoVendidoData.ModificarProducto(4, producto);
+
+            //
+            // Prueba Venta
+            //
+            //try
+            //{
+            //    Venta ventaObtenida = VentaData.ObtenerVenta(2);
+            //    ;
+            //}
+            //catch (Exception ex) { Console.WriteLine(ex.Message); }
+            List<Venta> venta = VentaData.ListarVentas();
+            //ProductoVendido Venta = new( "venta", 1);
+            //ProductoVendidoData.CrearProductoVendido(venta);
+            //ProductoVendidoData.EliminarProducto(7);
+            //ProductoVendidoData.ModificarProducto(4, venta);
         }
     }
 }

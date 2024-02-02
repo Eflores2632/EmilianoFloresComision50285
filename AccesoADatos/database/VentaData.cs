@@ -5,15 +5,10 @@ namespace AccesoADatos.database
 {
     public class VentaData
     {
-        private string stringConnection;
-        public VentaData()
+        private static string stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+        public static Venta ObtenerVenta(int id)
         {
-            this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
-            //this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
-        }
-        public Venta ObtenerVenta(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM Venta where id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -23,8 +18,8 @@ namespace AccesoADatos.database
                 if (reader.Read())
                 {
                     int idObtenido = Convert.ToInt32(reader["id"]);
-                    string comentarios = reader.GetString(2);
-                    int idusuario = Convert.ToInt32(3);
+                    string comentarios = reader.GetString(1);
+                    int idusuario = Convert.ToInt32(2);
                     Venta ventanuevo = new Venta(idObtenido, comentarios, idusuario);
                     return ventanuevo;
                 }
@@ -34,9 +29,9 @@ namespace AccesoADatos.database
                 }
             }
         }
-        public List<Venta> ListarVentas()
+        public static List<Venta> ListarVentas()
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM Venta";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -46,17 +41,17 @@ namespace AccesoADatos.database
                 while (reader.Read())
                 {
                     int idObtenido = Convert.ToInt32(reader["id"]);
-                    string comentarios = reader.GetString(2);
-                    int idusuario = Convert.ToInt32(3);
+                    string comentarios = reader.GetString(1);
+                    int idusuario = Convert.ToInt32(2);
                     Venta ventanuevo = new Venta(idObtenido, comentarios, idusuario);
                     listaVenta.Add(ventanuevo);
                 }
                 return listaVenta;
             }
         }
-        public bool CrearVenta(Venta venta)
+        public static bool CrearVenta(Venta venta)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "INSERT INTO Usuario (Comentarios,IdUsuarios) values (@comentarios,@idusuario)";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -66,9 +61,9 @@ namespace AccesoADatos.database
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool ModificarVenta(int id, Venta venta)
+        public static bool ModificarVenta(int id, Venta venta)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "UPDATE Venta SET Comentarios = @comentarios,IdUsuarios = @idusuario WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -79,9 +74,9 @@ namespace AccesoADatos.database
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool EliminarVenta(int id)
+        public static bool EliminarVenta(int id)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "DELETE FROM Venta WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);

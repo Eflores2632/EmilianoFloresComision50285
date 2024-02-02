@@ -5,16 +5,10 @@ namespace AccesoaDatos.database
 {
     public class ProductoData
     {
-        private string stringConnection;
-
-        public ProductoData()
+        private static string stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+        public static Producto ObtenerProducto(int id)
         {
-            this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
-            //this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
-        }
-        public Producto ObtenerProducto(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM Producto where id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -38,9 +32,9 @@ namespace AccesoaDatos.database
                 }
             }
         }
-        public List<Producto> ListarPrductos()
+        public static List<Producto> ListarPrductos()
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM Producto";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -76,9 +70,9 @@ namespace AccesoaDatos.database
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool ModificarProducto(int id, Producto producto)
+        public static bool ModificarProducto(int id, Producto producto)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "UPDATE Producto SET Descripciones = @descripciones,Costo = @costo,PrecioVenta = @precioVenta,Stock = @stock,IdUsuario = @idUsuario WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -92,9 +86,9 @@ namespace AccesoaDatos.database
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool EliminarProducto(int id)
+        public static bool EliminarProducto(int id)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "DELETE FROM Producto WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);

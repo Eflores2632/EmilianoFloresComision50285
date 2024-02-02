@@ -5,15 +5,10 @@ namespace AccesoADatos.database
 {
     public class ProductoVendidoData
     {
-        private string stringConnection;
-        public ProductoVendidoData()
+        private static string stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
+        public static ProductoVendido ObtenerProductoVendido(int id)
         {
-            this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
-            //this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
-        }
-        public ProductoVendido ObtenerProductoVendido(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM ProductoVendido where id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -35,11 +30,11 @@ namespace AccesoADatos.database
                 }
             }
         }
-        public List<ProductoVendido> ListarPrductosVendidos()
+        public static List<ProductoVendido> ListarPrductosVendidos()
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
-                string query = "SELECT * FROM ProductoVendidos";
+                string query = "SELECT * FROM ProductoVendido";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -56,9 +51,9 @@ namespace AccesoADatos.database
                 return listaproductosnuevos;
             }
         }
-        public bool CrearProductoVendido(ProductoVendido productovendido)
+        public static bool CrearProductoVendido(ProductoVendido productovendido)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "INSERT INTO ProductoVendido (Stock,IdProducto,IdVenta) values (@stock,@idproducto,@idventa)";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -69,9 +64,23 @@ namespace AccesoADatos.database
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-        public bool EliminarProducto(int id)
+        public static bool ModificarProducto(int id, ProductoVendido productovendido)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
+            {
+                string query = "UPDATE Producto SET Stock = @stock,IdProducto = @idproducto,IdVenta = @idventa WHERE id = @id";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("stock", productovendido.Stock);
+                cmd.Parameters.AddWithValue("idproducto", productovendido.IdProducto);
+                cmd.Parameters.AddWithValue("idventa", productovendido.IdVenta);
+                connection.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+        public static bool EliminarProducto(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "DELETE FROM ProductoVendido WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
