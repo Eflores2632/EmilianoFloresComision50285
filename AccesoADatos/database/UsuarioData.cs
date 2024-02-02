@@ -5,17 +5,16 @@ namespace AccesoaDatos.database
 {
     public class UsuarioData
     {
-        private string stringConnection;
-
+        private static string stringConnection;
         public UsuarioData()
         {
             //this.stringConnection = "Data Source=DESKTOP-TRA01FH;Database=coderhouse;Trusted_Connection=True;";
-            this.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;"; ;
+            UsuarioData.stringConnection = "Data Source=DESKTOP-SJ6J45C;Database=coderhouse;Trusted_Connection=True;";
         }
 
         public Usuario ObtenerUsuario(int id)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM Usuario where id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -41,7 +40,7 @@ namespace AccesoaDatos.database
         }
         public List<Usuario> ListarUsuarios()
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "SELECT * FROM Usuario";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -64,7 +63,7 @@ namespace AccesoaDatos.database
         }
         public bool CrearUsuario(Usuario user)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "INSERT INTO Usuario (Nombre,Apellido,NombreUsuario,Contraseña,Mail) values (@nombre,@apellido,@nombreUsuario,@contrasena,@mail)";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -80,7 +79,7 @@ namespace AccesoaDatos.database
 
         public bool ModificarUsuario(int id, Usuario user)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "UPDATE Usuario SET Nombre = @nombre,Apellido = @apellido,NombreUsuario = @nombreUsuario,Contraseña = @contrasena,Mail = @mail WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -96,7 +95,7 @@ namespace AccesoaDatos.database
         }
         public bool EliminarUsuario(int id)
         {
-            using (SqlConnection connection = new SqlConnection(this.stringConnection))
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 string query = "DELETE FROM Usuario WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
