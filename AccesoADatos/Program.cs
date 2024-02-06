@@ -12,27 +12,52 @@ namespace AccesoADatos
             //
             //try
             //{
-            //    Producto usuarioObtenido = db.ObtenerProducto(2);
+            //    Usuario usuarioObtenido = UsuarioData.ObtenerUsuario(2);
             //    ;
             //}
-            //catch (Exception ex) { Console.WriteLine(ex.Message);}
-            //List<Usuario> usuariosObtenidos = db.ListarUsuarios();
+            //catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+            //try
+            //{
+            //    List<Usuario> usuariosObtenidos = UsuarioData.ListarUsuarios();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
             //Usuario user = new("Emiliano", "Flores", "Emi", "Contraseña", "emiflores@mail.ocm");
-            //if (db.ModificarUsuario(2, user))
+
+            //try
             //{
-            //    Console.WriteLine("Se actualizo un usuario");
+            //    if (UsuarioData.ModificarUsuario(2, user))
+            //    {
+            //        Console.WriteLine("Se actualizo un usuario");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("No se pudo actualizo un usuario");
+            //    }
             //}
-            //else
+            //catch (Exception ex)
             //{
-            //    Console.WriteLine("No se pudo actualizo un usuario");
+            //    Console.WriteLine(ex.Message);
             //}
-            //if (db.BorrarUsuarioPorId(3))
+
+            //try
             //{
-            //    Console.WriteLine("Se borro un usuario");
+            //    if (UsuarioData.EliminarUsuario(3))
+            //    {
+            //        Console.WriteLine("Se borro un usuario");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("No se pudo borrar un usuario");
+            //    }
             //}
-            //else
+            //catch (Exception ex)
             //{
-            //    Console.WriteLine("No se pudo borrar un usuario");
+            //    Console.WriteLine(ex.Message);
             //}
 
             //
@@ -40,16 +65,46 @@ namespace AccesoADatos
             //
             //try
             //{
-            //Producto productoObtenido = ProductoData.ObtenerProducto(2);
+            //    Producto productoObtenido = ProductoData.ObtenerProducto(2);
             //    ;
             //}
             //catch (Exception ex) { Console.WriteLine(ex.Message); }
-            //List<Producto> productos = ProductoData.ListarPrductos();
-            //;
+            //try
+            //{
+            //    List<Producto> productos = ProductoData.ListarPrductos();
+            //    ;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
             //Producto producto = new("Remera", 17500, 19000, 15, 2);
-            //ProductoData.CrearProducto(producto);
-            //ProductoData.EliminarProducto(7);
-            //ProductoData.ModificarProducto(4, producto);
+
+            //try
+            //{
+            //    ProductoData.CrearProducto(producto);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //try
+            //{
+            //    ProductoData.EliminarProducto(7);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //try
+            //{
+            //    ProductoData.ModificarProducto(4, producto);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
             //
             // Prueba ProductosVendido
@@ -59,27 +114,93 @@ namespace AccesoADatos
             //    ProductoVendido productovendidoObtenido = ProductoVendidoData.ObtenerProductoVendido(2);
             //    ;
             //}
-            //catch (Exception ex) { Console.WriteLine(ex.Message); }
-            //List<ProductoVendido> productos = ProductoVendidoData.ListarPrductosVendidos();
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //try
+            //{
+            //    List<ProductoVendido> productos = ProductoVendidoData.ListarPrductosVendidos();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
             //ProductoVendido producto = new(1, 1, 1);
-            //ProductoVendidoData.CrearProductoVendido(producto);
-            //ProductoVendidoData.EliminarProducto(7);
-            //ProductoVendidoData.ModificarProducto(4, producto);
+            //try
+            //{
+            //    ProductoVendidoData.CrearProductoVendido(producto);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //try
+            //{
+            //    ProductoVendidoData.EliminarProducto(1);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //try
+            //{
+            //    ProductoVendidoData.ModificarProducto(4, producto);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
             //
             // Prueba Venta
             //
-            //try
-            //{
-            //    Venta ventaObtenida = VentaData.ObtenerVenta(2);
-            //    ;
-            //}
-            //catch (Exception ex) { Console.WriteLine(ex.Message); }
-            List<Venta> venta = VentaData.ListarVentas();
-            //ProductoVendido Venta = new( "venta", 1);
-            //ProductoVendidoData.CrearProductoVendido(venta);
-            //ProductoVendidoData.EliminarProducto(7);
-            //ProductoVendidoData.ModificarProducto(4, venta);
+            try
+            {
+                Venta ventaObtenida = VentaData.ObtenerVenta(2);
+                ;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                List<Venta> ventalista = VentaData.ListarVentas();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Venta venta = new("venta", 1);
+
+            try
+            {
+                VentaData.CrearVenta(venta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                VentaData.EliminarVenta(4);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            try
+            {
+                VentaData.ModificarVenta(4, venta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
